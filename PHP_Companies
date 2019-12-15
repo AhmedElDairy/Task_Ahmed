@@ -1,0 +1,102 @@
+<?php  
+// Array of user
+ $Ahmed = array("bike" ,"driving license");
+
+ $maxAhmed = sizeof($Ahmed);
+//flag to check the 
+ $flag=0;
+ $Companies = array
+	( array("Company A",array("Apartment","Property Insurance"),array("House","Property Insurance")),
+	  array("Company B",array("5 door car","driver's license","car insurance"),array("4 door car","driver's license","car insurance")),
+	  array("Company C",array("social security" ,"work permit")),
+      array("Company D",array("Apartment"),array("flat"), array("house")),	
+      array("Company E",array("2 door car"),array("3 door car"),array("4 door car"),array("5 door car")),
+	  array("Company F",array("scooter","driver's license","motorcycle insurance"),array( "motorcycle","driver's license","motorcycle insurance"),array("bike","driver's license","motorcycle insurance")),
+	  array("Company G",array("massage qualification certificate","liability insurance")),
+      array("Company H",array("storage place"),array("garage")),	
+	  array("Company J"),
+      array("Company K",array("PayPal account"))) ;	
+
+///////////////////////////////////////	
+//Displaying that satisfies the user///	
+//////////////////////////////////////
+
+	  
+//count array map for the sizes of arrays inside.
+ $count = array_map('count', $Companies);  
+ $countI= sizeof($count);
+ $r = 0;
+$CompaniesNReq=[];
+	for($i=0;$i<$countI;$i++){
+		
+		 if($count[$i]== "1" ){
+			 
+             	print_r($Companies[$i][0]); 
+			    print_r("  Satisfies you"."\n");
+                $CompaniesNReq[$r]=$Companies[$i][0];
+                $r ++;
+         
+            } 
+     	for($j=1;$j<$count[$i];$j++){
+		  
+              $countK= array_map('count', $Companies[$i]);
+              $flag=0;
+			  
+			for($k=0;$k<$countK[$j];$k++){
+				
+			   for($m=0;$m<$maxAhmed;$m++){
+				   
+                 if($Ahmed[$m]==$Companies[$i][$j][$k])
+				 {                 	
+				  $flag++;
+                     
+                   if($flag==$countK[$j]){
+				      print_r($Companies[$i][0]); 
+			          print_r("  Satisfies you"."\n"); 
+			          $flag=0;
+                       $CompaniesNReq[$r]=$Companies[$i][0];
+                       $r ++;
+					}                                   
+			      }                  
+				}		  
+            }	
+		}
+	}
+	
+/////////////////////////////////////////////	
+//Displaying the companies with requirments//	
+/////////////////////////////////////////////
+	for($i=0;$i<$countI;$i++){
+		
+       $zero=sizeof($CompaniesNReq);
+	   
+	  for($n=0;$n<(sizeof($CompaniesNReq));$n++){          
+        
+		  if($Companies[$i][0]!==$CompaniesNReq[$n]){
+                  // print_r($CompaniesNReq[$n]."\n"); 	
+				     // echo $zero;
+                      $zero--;
+              if($zero=="0"){
+                      print_r($Companies[$i][0]); 					  
+			          print_r("  requires");   
+     	for($j=1;$j<$count[$i];$j++){
+		  
+             $countK= array_map('count', $Companies[$i]);              
+			  
+			for($k=0;$k<$countK[$j];$k++){
+				
+				if($k>0)
+                    print_r(" and ");
+                
+			  	  print_r(" ".$Companies[$i][$j][$k]);	  
+            }	
+            if($j<$count[$i]-1)   
+             print_r(" or");
+		  }               
+		        print_r("\n");
+				}
+           
+			}	
+		}
+    }
+?> 
