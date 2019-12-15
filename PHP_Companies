@@ -3,7 +3,7 @@
  $Ahmed = array("bike" ,"driving license");
 
  $maxAhmed = sizeof($Ahmed);
-//flag to check the 
+//flag to check the companies that is satisfied with the user
  $flag=0;
  $Companies = array
 	( array("Company A",array("Apartment","Property Insurance"),array("House","Property Insurance")),
